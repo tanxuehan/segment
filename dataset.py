@@ -7,9 +7,10 @@ from config import *
 
 
 class SegDataset(Dataset):
-    def __init__(self, X, transform=None):
+    def __init__(self, X, transform=None, mode="train"):
         self.X = X
         self.transform = transform
+        self.mode = mode
 
     def __len__(self):
         return len(self.X)
@@ -23,16 +24,26 @@ class SegDataset(Dataset):
         return transform(img)
 
     def __getitem__(self, index):
-        img = cv2.imread(img_path + self.X[index] + ".jpg")
-        img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-        mask = cv2.imread(mask_path + self.X[index] + ".png", cv2.IMREAD_GRAYSCALE)
+        if self.mode == "train":
+            img = cv2.imread(img_path + self.X[index] + ".jpg")
+            img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 
-        if self.transform is not None:
-            aug = self.transform(image=img, mask=mask)
-            img = aug["image"]
-            mask = aug["mask"]
+            mask = cv2.imread(mask_path + self.X[index] + ".png", cv2.IMREAD_GRAYSCALE)
 
-        img = self.norm(img)
-        mask = torch.from_numpy(mask).long()
+            if self.transform is not None:
+                aug = self.transform(image=img, mask=mask)
+                img = aug["image"]
+                mask = aug["mask"]
 
-        return img, mask
+            img = self.norm(img)
+            mask = torch.from_numpy(mask).long()
+
+            return img, mask
+        else:
+            img = cv2.imread(test_path + self.X[index] + ".jpg")
+            dim = (img_width, img_height)
+            # resize image
+            img = cv2.resize(img, dim, interpolation=cv2.INTER_AREA)
+            img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+            img = self.norm(img)
+            return img

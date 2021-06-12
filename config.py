@@ -15,3 +15,4 @@ batch_size = 3
 valid_batch_size = 3
 early_stop = 5
 model_dir = "weights/"
+test_path = "/data/segment_q/data/test/images/"
