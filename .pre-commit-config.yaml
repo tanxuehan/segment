@@ -6,12 +6,12 @@ repos:
       entry: make format
       language: system
       pass_filenames: false
-    # - id: style-check
-    #   name: Check code style
-    #   entry: black --diff --check cluster examples tests
-    #   language: system
-    #   pass_filenames: false
-    #   types: [python3]
+    - id: style-check
+      name: Check code style
+      entry: black --diff --check .
+      language: system
+      pass_filenames: false
+      types: [python3]
 
 
 -   repo: https://github.com/ambv/black
