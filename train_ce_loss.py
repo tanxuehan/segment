@@ -127,8 +127,6 @@ def start_train():
     for epoch in range(1, n_epochs + 1):
         loss_train = train_func(train_loader)
         loss_valid, coeff = valid_func(val_loader)
-        loss_valid = valid_func(val_loader)
-        print(coeff)
 
         log["loss_train"] = log.get("loss_train", []) + [loss_train]
         log["loss_valid"] = log.get("loss_valid", []) + [loss_valid]
@@ -138,7 +136,7 @@ def start_train():
         content = (
             time.ctime()
             + " "
-            + f'Epoch {epoch}, lr: {optimizer.param_groups[0]["lr"]:.7f}, loss_train: {loss_train:.5f}, loss_valid: {loss_valid:.5f}, coeff: {coeff}.'
+            + f'Epoch {epoch}, lr: {optimizer.param_groups[0]["lr"]:.7f}, loss_train: {loss_train:.5f}, loss_valid: {loss_valid:.5f}, coeff: {coeff:.5f}.'
         )
         # content = time.ctime() + ' ' + f'Epoch {epoch}, lr: {optimizer.param_groups[0]["lr"]:.7f}, loss_train: {loss_train:.5f}.'
         print(content)
@@ -146,7 +144,7 @@ def start_train():
 
         if coeff > coeff_max:
             print(f"coeff_max ({coeff_max:.6f} --> {coeff:.6f}). Saving model ...")
-            torch.save(model.state_dict(), f"{model_dir}_best_coffe_ce.pth")
+            torch.save(model.state_dict(), f"{model_dir}_best_coffe_ce{coeff:.6f}.pth")
             coeff_max = coeff
             not_improving = 0
 

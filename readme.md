@@ -1,5 +1,14 @@
 # segmentation
 
+## abstract
+### 实验结果
+### test
+测试命令行
+
+```shell
+python3 -m segment.eval model_path eval_res_path
+```
+
 ## 数据分析
 
 ##### 图片size：
