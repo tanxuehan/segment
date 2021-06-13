@@ -7,3 +7,6 @@ format:
 
 style-check:
 	black --diff --check .
+
+install:
+	python3 -m pip install -r requirements.txt --user

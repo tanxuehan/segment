@@ -1,0 +1,6 @@
+albumentations
+cv2
+firenumpy
+segmentation_models_pytorch
+torch
+tqdm

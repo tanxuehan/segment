@@ -1,10 +1,9 @@
 import albumentations
-import albumentations as A
 from albumentations import *
 
 from config import *
 
-transforms_train = albumentations.Compose(
+t_train = albumentations.Compose(
     [
         albumentations.RandomResizedCrop(img_height, img_width, scale=(0.9, 1), p=1),
         albumentations.HorizontalFlip(p=0.5),
@@ -53,26 +52,26 @@ transforms_train = albumentations.Compose(
     ]
 )
 
-transforms_valid = albumentations.Compose(
+t_val = albumentations.Compose(
     [albumentations.Resize(img_height, img_width), albumentations.Normalize()]
 )
 
 
-t_train = A.Compose(
-    [
-        A.Resize(img_height, img_width, interpolation=cv2.INTER_NEAREST),
-        A.HorizontalFlip(),
-        A.VerticalFlip(),
-        A.GridDistortion(p=0.2),
-        A.RandomBrightnessContrast((0, 0.5), (0, 0.5)),
-        A.GaussNoise(),
-    ]
-)
+# t_train = A.Compose(
+#     [
+#         A.Resize(img_height, img_width, interpolation=cv2.INTER_NEAREST),
+#         A.HorizontalFlip(),
+#         A.VerticalFlip(),
+#         A.GridDistortion(p=0.2),
+#         A.RandomBrightnessContrast((0, 0.5), (0, 0.5)),
+#         A.GaussNoise(),
+#     ]
+# )
 
-t_val = A.Compose(
-    [
-        A.Resize(img_height, img_width, interpolation=cv2.INTER_NEAREST),
-        A.HorizontalFlip(),
-        A.GridDistortion(p=0.2),
-    ]
-)
+# t_val = A.Compose(
+#     [
+#         A.Resize(img_height, img_width, interpolation=cv2.INTER_NEAREST),
+#         A.HorizontalFlip(),
+#         A.GridDistortion(p=0.2),
+#     ]
+# )

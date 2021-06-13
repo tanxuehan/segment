@@ -4,8 +4,7 @@ import time
 import numpy as np
 import torch.nn as nn
 from torch.utils.data import DataLoader
-from torchgeometry.losses.dice import DiceLoss
-from tqdm import tqdm
+from tqdm.auto import tqdm
 
 from config import *
 from dataset import SegDataset
@@ -158,15 +157,10 @@ def start_train():
 
 if __name__ == "__main__":
     model = SegNet()
-    # model = smp.Unet('mobilenet_v2', encoder_weights='imagenet', classes=23, activation=None, encoder_depth=5, decoder_channels=[256, 128, 64, 32, 16])
     model = model.to(device)
     model = nn.DataParallel(model, device_ids=range(torch.cuda.device_count()))
-    # criterion = nn.CrossEntropyLoss()
-    criterion = DiceLoss()
-    # optimizer = torch.optim.Adam(model.parameters(), lr=1e-3)
-    optimizer = torch.optim.Adam(
+    criterion = nn.CrossEntropyLoss()
+    optimizer = torch.optim.AdamW(
         model.parameters(), lr=max_lr, weight_decay=weight_decay
     )
     start_train()
-    # del model
-    # torch.cuda.empty_cache()

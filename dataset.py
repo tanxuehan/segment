@@ -7,7 +7,22 @@ from config import *
 
 
 class SegDataset(Dataset):
+    """
+    Segmentation dataset
+    """
+
     def __init__(self, X, transform=None, mode="train"):
+        """
+        Parameters:
+            X: sample name
+            transform: augmentation 方式
+            mode: 数据类别，可为"train"和"test“
+        """
+        if mode not in {"train", "test"}:
+            raise ValueError(
+                f"{mode} is not avaliable,dataset mode should be: 'train' or 'test'."
+            )
+
         self.X = X
         self.transform = transform
         self.mode = mode
@@ -19,7 +34,6 @@ class SegDataset(Dataset):
         """
         使用ImageNet的均值和标准差做归一化。
         """
-
         transform = T.Compose([T.ToTensor(), T.Normalize(mean, std)])
         return transform(img)
 
