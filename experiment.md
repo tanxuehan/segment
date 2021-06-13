@@ -32,7 +32,7 @@ ce loss
 ### 实验中进行优化的点
 1. 初始实验中，由于评价指标为[Dice coefficient](https://en.wikipedia.org/wiki/Sørensen–Dice_coefficient)，loss function 采用与之对应的 dice loss，但收敛速度很慢，loss反复振荡，猜测主要由图像中小目标正样本较多，小目标的错误分类会会导致loss大幅度的变动，从而导致梯度变化剧烈。因此，后续实验中采用ce loss。
 
-2. 初始实验中，设置Dice coefficient 3轮不增加则arly stop，实验结果发现Dice coefficient 只能达到0.1左右。查看log发现实验过早 early stop。尽管Dice coefficient不增加，但loss仍然在下降，在后续实验中，考虑数据量不大，可以设置较大的early stop，直接存储最优dice coff的model。
+2. 初始实验中，设置Dice coefficient 3轮不增加则arly stop，实验结果发现Dice coefficient 只能达到0.1左右。查看log发现实验过早 early stop。尽管Dice coefficient不增加，但loss仍然在下降，在后续实验中，考虑数据量不大，可以设置较大的early stop，直接存储最优Dice coefficient的model。
 
 #### 其他后续调优中可用的trick：
 

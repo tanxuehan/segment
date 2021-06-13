@@ -30,5 +30,6 @@ python3 -m segment.eval model_path eval_res_path
 ###
 #### Visualized results
 <img src="./imgs/res.png" alt="visualize" style="zoom:50%;" />
+
 #### Details
 见 [link](https://github.com/tanxuehan/segment/blob/master/experiments.md)
