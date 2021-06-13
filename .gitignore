@@ -1,4 +1,4 @@
 __pycache__/
 weights/
-eval_res/
 !weights/mode_split_best_coeff_0.168723_epoch_10.pth
+eval_res/
