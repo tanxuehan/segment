@@ -1,4 +1,4 @@
 __pycache__/
 weights/
-!./weights/mode_split_best_loss_1.16645_epoch_17.pth
+!./weights/mode_split_best_coeff_0.278169_epoch_24.pth
 eval_res/
