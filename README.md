@@ -6,7 +6,7 @@
 - Pytorch ( recommended version : 1.7.1 )
 ### Installation
 ```bash
-cd ./cluster_codebase
+cd ./segment
 make install
 ```
 ### Train
@@ -25,11 +25,11 @@ python3 -m segment.eval model_path eval_res_path
 
 | Backbone | Dice coefficient | Model                                                        |
 | -------- | ---------------- | ------------------------------------------------------------ |
-| Vgg16_BN | 16.8723%         | ./weights/mode_split_best_coeff_0.168723_epoch_10.pth |
+| Vgg16_BN | 20.53%         | ./weights/mode_split_best_coeff_0.205319_epoch_11.pth |
 
 ###
 #### Visualized results
 <img src="./imgs/res.png" alt="visualize" style="zoom:50%;" />
 
 #### Details
-见 [link](https://github.com/tanxuehan/segment/blob/master/experiments.md)
+[link](https://github.com/tanxuehan/segment/blob/master/experiment.md)

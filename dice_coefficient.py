@@ -20,18 +20,16 @@ def dice_coefficient(pred_mask, mask, smooth=1e-10, n_classes=23):
 
         coefficients = []
         for cls in range(0, n_classes):
-            true_class = pred_mask == cls
-            true_label = mask == cls
+            pred_y = pred_mask == cls
+            true_y = mask == cls
 
-            if true_label.long().sum().item() == 0:
+            if true_y.long().sum().item() == 0:
                 continue
             else:
-                intersect = (
-                    torch.logical_and(true_class, true_label).sum().float().item()
+                intersect = torch.logical_and(pred_y, true_y).sum().float().item()
+                coefficient = (2 * intersect + smooth) / (
+                    pred_y.sum().float().item() + true_y.sum().float().item() + smooth
                 )
-                union = torch.logical_or(true_class, true_label).sum().float().item()
-
-                coefficient = (intersect + smooth) / (union + smooth)
                 coefficients.append(coefficient)
 
         return np.mean(coefficients)
