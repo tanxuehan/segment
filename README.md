@@ -25,7 +25,7 @@ python3 -m segment.eval model_path eval_res_path
 
 | Backbone | Dice coefficient | Model                                                        |
 | -------- | ---------------- | ------------------------------------------------------------ |
-| Vgg16_BN | 20.53%         | ./weights/mode_split_best_coeff_0.205319_epoch_11.pth |
+| Vgg16_BN | 24.56%         | ./weights/mode_split_best_loss_1.16645_epoch_17.pth |
 
 ###
 #### Visualized results

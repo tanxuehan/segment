@@ -13,7 +13,7 @@ args = {"snapshot": "_best_loss.pth"}
 
 
 def eval(
-    model_path="./weights/mode_split_best_coeff_0.205319_epoch_11.pth",
+    model_path="./weights/mode_split_best_loss_1.16645_epoch_17.pth",
     eval_res_path="./eval_res/",
     model_name="vgg16_bn",
 ):
